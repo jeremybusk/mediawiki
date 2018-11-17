@@ -25,9 +25,13 @@ CREATE USER 'wiki'@'localhost' IDENTIFIED BY 'wiki';
 GRANT ALL ON wiki.* TO 'wiki'@'localhost' WITH GRANT OPTION;
 EOL
 
-wget https://releases.wikimedia.org/mediawiki/1.31/mediawiki-1.31.0.tar.gz
-tar -xvzf mediawiki-1.31.0.tar.gz
-sudo cp -r mediawiki-1.31.0 /var/www/html/wiki
+# wget https://releases.wikimedia.org/mediawiki/1.31/mediawiki-1.31.0.tar.gz
+# tar -xvzf mediawiki-1.31.0.tar.gz
+# sudo cp -r mediawiki-1.31.0 /var/www/html/wiki
+# Alpha for visual editor
+git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/core.git
+sudo cp -r core /var/www/html/wiki
+#
 sudo chown -R www-data:www-data /var/www/html/wiki
 sudo chmod -R 777 /var/www/html/wiki
 
