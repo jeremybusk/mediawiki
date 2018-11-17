@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ## Install MediaWiki 1.31 on Ubuntu 18.04
+## Include Visual Editor via node parsoid
 
 sudo apt-get update
 sudo apt-get upgrade -y
