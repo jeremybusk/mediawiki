@@ -61,3 +61,65 @@ sudo a2ensite wiki.conf
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 
+
+
+# Parsoid
+apt install nodejs npm
+nodejs --version # should be v4.x or higher
+cd /opt
+git clone https://gerrit.wikimedia.org/r/p/mediawiki/services/parsoid
+cd parsoid
+git review -s # optional, see below
+npm install
+npm test # might as well - requires nsp, eslint to be installed
+cp config.example.yaml config.yaml
+# edit config.yaml
+npm start
+
+## LocalSettings
+sudo cat >>/var/www/html/wiki/LocalSettings.php <<EOL
+$wgVirtualRestConfig['modules']['parsoid'] = array(
+    // URL to the Parsoid instance
+    // Use port 8142 if you use the Debian package
+    'url' => 'http://localhost:8000',
+    // Parsoid "domain", see below (optional)
+    'domain' => 'localhost',
+    // Parsoid "prefix", see below (optional)
+    'prefix' => 'localhost'
+);
+EOL
+
+
+
+
+
+# VisualEditor
+cd /var/www/html/wiki
+cd extensions
+git clone https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VisualEditor.git
+cd VisualEditor
+git submodule update --init
+
+
+
+## Add to LocalSettings.php
+sudo cat >>/var/www/html/wiki/LocalSettings.php <<EOL
+wfLoadExtension( 'VisualEditor' );
+
+// Enable by default for everybody
+$wgDefaultUserOptions['visualeditor-enable'] = 1;
+
+// Optional: Set VisualEditor as the default for anonymous users
+// otherwise they will have to switch to VE
+// $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
+
+// Don't allow users to disable it
+$wgHiddenPrefs[] = 'visualeditor-enable';
+
+// OPTIONAL: Enable VisualEditor's experimental code features
+#$wgDefaultUserOptions['visualeditor-enable-experimental'] = 1;
+EOL
+
+
+
+
