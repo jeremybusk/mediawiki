@@ -1,3 +1,5 @@
+cp -r ../wiki.1.31/skins/* skins/
+
 git checkout master
 
 Keeping up to date
