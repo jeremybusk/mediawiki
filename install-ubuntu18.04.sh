@@ -9,7 +9,7 @@ sudo apt-get -y install sudo
 sudo apt-get -y install mysql-server 
 # sudo apt-get -y install apache2 mariadb-server -y # has issues on containers (need privledge)
 #sudo apt-get install apache2 mysql-server php php-mysql libapache2-mod-php php-xml php-mbstring
-sudo apt-get -y install apache2 php php-mysql libapache2-mod-php php-xml php-mbstring php-gd php-zip php-xml php-soap php-xmlrpc libapache2-mod-php php-curl php-apcu git 
+sudo apt-get -y install apache2 php php-mysql curl php-cli unzip libapache2-mod-php php-xml php-mbstring php-gd php-zip php-xml php-soap php-xmlrpc libapache2-mod-php php-curl php-apcu git 
 
 sudo cp /etc/php/7.2/apache2/php.ini /etc/php/7.2/apache2/php.ini.o
 sudo cat >/etc/php/7.2/apache2/php.ini <<EOL
