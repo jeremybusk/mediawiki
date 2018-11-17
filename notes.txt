@@ -1,0 +1,23 @@
+git checkout master
+
+Keeping up to date
+If you're using a particular branch or the development version ("master" branch) of MediaWiki, picking up the latest changes is relatively easy. Change into your MediaWiki clone directory and issue this command:
+
+git pull
+All of the latest changes for the branch you are using will be applied.
+
+The new version of core may require newer versions of extensions and skins, so you must go into each extension and skin directory and update it with a command like git pull --recurse-submodules.
+
+You also need to update vendor/ with any newer versions of required libraries. This often means running the following Composer command, but see #Fetch external libraries above for more details:
+
+composer update --no-dev
+After updating/upgrading the code and required libraries you should run the MediaWiki update.php command-line script to update database tables as needed:
+
+php maintenance/update.php
+
+If you use MediaWiki-Vagrant, it offers a single command, vagrant git-update, that performs all these steps.
+
+Switching to a different version
+Switching to a different version of MediaWiki is far simpler with Git than with SVN. Each of our versions are tracked as branches or tags. In order to switch to one of these, all you have to do is checkout the particular branch or tag you want from within your MediaWiki clone directory:
+
+git checkout <branchname>
