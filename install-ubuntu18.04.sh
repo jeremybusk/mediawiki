@@ -31,6 +31,10 @@ EOL
 # Alpha for visual editor
 git clone --depth 1 https://gerrit.wikimedia.org/r/mediawiki/core.git
 sudo cp -r core /var/www/html/wiki
+cd /var/www/html/wiki
+sudo -u www-data composer update --no-dev
+sudo -u www-data php maintenance/update.php
+# get skins cp -r ../wiki.1.31/skins/* skins/
 #
 sudo chown -R www-data:www-data /var/www/html/wiki
 sudo chmod -R 777 /var/www/html/wiki
