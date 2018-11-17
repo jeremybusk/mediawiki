@@ -64,6 +64,9 @@ sudo systemctl restart apache2
 
 
 
+# Add Visual Editor via Parsoid
+
+
 # Parsoid
 apt install nodejs npm
 nodejs --version # should be v4.x or higher
