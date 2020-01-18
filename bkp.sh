@@ -30,4 +30,5 @@ cd ../
 
 find . -type f -exec chmod 644 {} \;
 find . -type d -exec chmod 755 {} \;
+chmod +x ${html_folder}/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize
 echo "Mediawiki update complete."
